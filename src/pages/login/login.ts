@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { App, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ToastController } from 'ionic-angular';
 
@@ -13,7 +13,6 @@ import { HomePage } from '../home/home';
   providers: [FormBuilder]
 })
 export class LoginPage {
-	@ViewChild(Nav) nav: Nav;
 
 
   public signInForm: FormGroup;
@@ -22,7 +21,8 @@ export class LoginPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     private formBuilder: FormBuilder,
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController,
+    public appCtrl: App) {
 
     // building the form
     this.signInForm = formBuilder.group({
@@ -44,8 +44,10 @@ export class LoginPage {
       return
     } else {
       this.createToast('Signed in with username: ' + this.signInForm.value.username).present();
-      this.navCtrl.push(HomePage);
 
+      // (getRootNav) is deprecated and will be removed in the next major release. Use getRootNavById instead.
+      // change when deprecated
+      this.appCtrl.getRootNav().setRoot(HomePage);
     }
   }
 }
