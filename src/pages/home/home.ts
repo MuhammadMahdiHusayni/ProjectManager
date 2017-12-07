@@ -6,7 +6,7 @@ import { ProjectService } from '../../app/services/project.service';
 import { HttpClient } from '@angular/common/http';
 
 // should I use ionic native http?
-
+// test
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
