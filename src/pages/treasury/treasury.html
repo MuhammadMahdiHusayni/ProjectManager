@@ -1,0 +1,37 @@
+<ion-header>
+    <ion-navbar color="three">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Treasury</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-card *ngFor="let item of data" (tap)="openAccountDetail(item.id, item.title, item.balance)" color="{{item.color}}">
+        <ion-card-header>
+            <h2 ion-text class="bold">Account: </h2>{{item.title}}
+        </ion-card-header>
+        <ion-card-content>
+            <h2 ion-text class="bold">Balance: </h2>RM {{item.balance}}
+        </ion-card-content>
+    </ion-card>
+    <ion-fab bottom right>
+        <button ion-fab color="five">
+            <ion-icon name="add"></ion-icon>
+        </button>
+        <ion-fab-list side="top">
+            <button ion-fab color="four" (tap)="addIncome()">
+                <ion-icon name="md-filing"></ion-icon>
+                <ion-label>Add Income</ion-label>
+            </button>
+            <button ion-fab color="two" (tap)="addExpense()">
+                <ion-icon name="md-flame"></ion-icon>
+                <ion-label>Add Expense</ion-label>
+            </button>
+            <button ion-fab color="one" (tap)="addAccount()">
+                <ion-icon name="ios-create-outline"></ion-icon>
+                <ion-label>Add Account</ion-label>
+            </button>
+        </ion-fab-list>
+    </ion-fab>
+</ion-content>

@@ -1,0 +1,50 @@
+<ion-header>
+    <ion-navbar color="one">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{item.title}}</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-card text-wrap (click)="toggleOverall=!toggleOverall" [ngClass]="{active: toggleOverall}" color="three">
+        <ion-card-header text-center>
+            Overall Plan
+        </ion-card-header>
+        <ion-card-content *ngIf="toggleOverall">
+            <ion-list>
+                <p> {{ item.body }} </p>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+    <ion-card text-wrap (click)="toggleThisWeek=!toggleThisWeek" [ngClass]="{active: toggleThisWeek}" color="four">
+        <ion-card-header text-center>
+            Two Weeks Plan
+        </ion-card-header>
+        <ion-card-content *ngIf="toggleThisWeek">
+            <ion-list>
+                <p> {{ item.body }} </p>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+    
+    <ion-fab bottom right>
+        <button ion-fab color="two">
+            <ion-icon name="add"></ion-icon>
+        </button>
+        <ion-fab-list side="top">
+            <button ion-fab color="three" (click)="addWeeklyReport()">
+                <ion-icon name="ios-create-outline"></ion-icon>
+                <ion-label>Add Two Weeks Report</ion-label>
+            </button>
+            <button ion-fab color="four" (click)="editWeeklyReport()">
+                <ion-icon name="ios-create-outline"></ion-icon>
+                <ion-label>Edit This Week Report</ion-label>
+            </button>
+            <button ion-fab color="five" (click)="editOverall()">
+                <ion-icon name="ios-create-outline"></ion-icon>
+                <ion-label>Edit Overall Plan</ion-label>
+            </button>
+        </ion-fab-list>
+    </ion-fab>
+</ion-content>

@@ -1,0 +1,19 @@
+<ion-content padding class="transparent-header">
+    <ion-header>
+        <ion-navbar>
+        </ion-navbar>
+    </ion-header>
+    <img class="logo" src="assets/imgs/logo-instagram.png" />
+    <div padding>
+        <form [formGroup]="signInForm" (ngSubmit)="signInFormSubmit()">
+            <ion-item>
+                <ion-input type="text" formControlName="username" name="username" placeholder="Username" required clearInput></ion-input>
+            </ion-item>
+            <ion-item>                      
+                <ion-input type="password" placeholder="Password" formControlName="password" name="password" clearInput ></ion-input>
+            </ion-item>
+            <button ion-button block outline type="submit" [disabled]="!signInForm.valid" color="light" class="login-button">Sign In</button>
+        </form>
+    </div>
+</ion-content>
+

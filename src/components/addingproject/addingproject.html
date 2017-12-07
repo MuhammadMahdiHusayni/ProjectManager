@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-navbar color="one">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Add Project</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-card>
+        <ion-card-content>
+            <!-- TODO USE ANGULAR FORMS -->
+            <form (ngSubmit)="sendForm()">
+                <ion-item>
+                    <ion-label stacked>Enter title</ion-label>
+                    <ion-input type="text" [(ngModel)]="title" name="title"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>Enter Description</ion-label>
+                    <ion-textarea fz-elastic type="text" [(ngModel)]="description" name="description"></ion-textarea>
+                </ion-item>
+                <button ion-button type="submit" block color="two">Add</button>
+            </form>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

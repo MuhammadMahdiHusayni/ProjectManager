@@ -1,8 +1,8 @@
 {
   "name": "myApp",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "author": "Muhammad Mahdi Husayni bin Azizan",
+  "homepage": "https://github.com/MuhammadMahdiHusayni",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
@@ -21,10 +21,14 @@
     "@angular/platform-browser": "5.0.3",
     "@angular/platform-browser-dynamic": "5.0.3",
     "@ionic-native/core": "4.4.0",
+    "@ionic-native/http": "^4.4.2",
     "@ionic-native/splash-screen": "4.4.0",
     "@ionic-native/status-bar": "4.4.0",
-    "@ionic/pro": "1.0.16",
+    "@ionic/pro": "^1.0.16",
     "@ionic/storage": "2.1.3",
+    "angular-in-memory-web-api": "^0.5.1",
+    "angular2-elastic": "^0.13.0",
+    "cordova-plugin-advanced-http": "^1.9.0",
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
     "rxjs": "5.5.2",
@@ -35,5 +39,10 @@
     "@ionic/app-scripts": "3.1.4",
     "typescript": "2.4.2"
   },
-  "description": "An Ionic project"
+  "description": "Custom Project Management Mobile Application",
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-advanced-http": {}
+    }
+  }
 }

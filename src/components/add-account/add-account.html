@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-navbar color="three">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Add Account</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-card>
+        <!-- <ion-card-header text-center>
+            Add Project
+        </ion-card-header> -->
+        <ion-card-content>
+            <form (ngSubmit)="sendForm()">
+                <ion-item>
+                    <ion-label>Enter title</ion-label>
+                    <ion-input type="text" [(ngModel)]="title" name="title"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Enter description</ion-label>
+                    <ion-input type="text" [(ngModel)]="description" name="description"></ion-input>
+                </ion-item>
+                <button ion-button type="submit" block color="four">Add</button>
+            </form>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

@@ -1,0 +1,31 @@
+<ion-header>
+    <ion-navbar color="two">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Minute Meeting</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+ <ion-card *ngFor="let item of data" (tap)="openProjectDetail(item.id, item.title)" color="{{item.color}}">
+        <ion-card-header>
+            {{item.title}}
+        </ion-card-header>
+        <ion-card-content>
+            {{item.location}}, {{item.date}}
+        </ion-card-content>
+    </ion-card>
+    <ion-fab bottom right>
+        <button ion-fab color="four">
+            <ion-icon name="add"></ion-icon>
+        </button>
+        <ion-fab-list side="top">
+            <button ion-fab color="five" (click)="addProject()">
+                <ion-icon name="ios-create-outline"></ion-icon>
+                <ion-label>Minute Meeting</ion-label>
+            </button>
+        </ion-fab-list>
+    </ion-fab>
+</ion-content>

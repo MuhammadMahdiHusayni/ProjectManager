@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-navbar color="two">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{title}}</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-card text-wrap (click)="toggleDetail=!toggleDetail" [ngClass]="{active: toggleDetail}" color="three">
+        <ion-card-header text-center>
+            Detail
+        </ion-card-header>
+        <ion-card-content *ngIf="toggleDetail">
+            <h3 ion-text class="bold">Location</h3> Sg Pinang
+            <h3 ion-text class="bold">Date</h3> 11/7/2017
+            <h3 ion-text class="bold">Time</h3> 12.30 PM
+        </ion-card-content>
+    </ion-card>
+    <ion-card *ngFor="let d of diseases; let i=index" text-wrap (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}" color="{{d.color}}">
+        <ion-card-header text-center>
+            {{d.title}}
+        </ion-card-header>
+        <ion-card-content *ngIf="isGroupShown(i)">
+            <h3 ion-text *ngFor="let e of d.items;"> <ion-icon name="git-commit"></ion-icon> {{e.name}}</h3>
+        </ion-card-content>
+    </ion-card>
+</ion-content>
