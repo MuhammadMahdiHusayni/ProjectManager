@@ -18,9 +18,10 @@ export class AddWeeklyReportComponent {
   constructor(private projectService: ProjectService, 
                 private toastCtrl: ToastController,
                 private navParams: NavParams) {
-    this.item = navParams.get('item');
-    this.report = this.item.body;
-    this.plan = this.item.body;
+    if(navParams.get('item')){
+      this.report = navParams.get('item').body;
+      this.plan = navParams.get('item').body;
+    }
   }
 
   // TODO VALIDATION

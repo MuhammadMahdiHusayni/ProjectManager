@@ -14,7 +14,6 @@ import { HomePage } from '../home/home';
 })
 export class LoginPage {
 
-
   public signInForm: FormGroup;
 
   constructor(
@@ -43,6 +42,7 @@ export class LoginPage {
       this.createToast('Ooops, form not valid...').present();
       return
     } else {
+      //TODO CHECK WITH DATABASE VALID OR NOT
       this.createToast('Signed in with username: ' + this.signInForm.value.username).present();
 
       // (getRootNav) is deprecated and will be removed in the next major release. Use getRootNavById instead.

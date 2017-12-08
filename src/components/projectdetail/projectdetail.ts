@@ -16,7 +16,7 @@ export class ProjectdetailComponent {
 	}
 
 	addWeeklyReport(){
-		this.navCtrl.push(AddWeeklyReportComponent);
+		this.navCtrl.push(AddWeeklyReportComponent, {item: this.item});
 	}
 	editWeeklyReport(){
 		this.navCtrl.push(AddWeeklyReportComponent, {item: this.item});
