@@ -1,12 +1,15 @@
 import { Component, ViewChild } from '@angular/core';
-import { App, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { App, Loading, LoadingController, AlertController,  IonicPage, NavController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ToastController } from 'ionic-angular';
 
-// TODO AuthProvider
+import { AuthProvider } from '../../providers/auth/auth';
 import { HomePage } from '../home/home';
+import { SignupPage } from '../signup/signup';
 
-@IonicPage()
+@IonicPage({
+  name: 'login'
+})
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -15,12 +18,15 @@ import { HomePage } from '../home/home';
 export class LoginPage {
 
   public signInForm: FormGroup;
+  public loading: Loading;
 
   constructor(
     public navCtrl: NavController, 
-    public navParams: NavParams,
+    public loadingCtrl: LoadingController,
+    public alertCtrl: AlertController, 
     private formBuilder: FormBuilder,
-    public toastCtrl: ToastController,
+    public toastCtrl: ToastController, 
+    public authProvider: AuthProvider,
     public appCtrl: App) {
 
     // building the form
@@ -42,12 +48,37 @@ export class LoginPage {
       this.createToast('Ooops, form not valid...').present();
       return
     } else {
+          this.authProvider.loginUser(this.signInForm.value.username, this.signInForm.value.password)
+            .then( authData => {
+              this.loading.dismiss().then( () => {
+                this.navCtrl.setRoot(HomePage);
+              });
+            }, error => {
+              this.loading.dismiss().then( () => {
+                let alert = this.alertCtrl.create({
+                message: error.message,
+                buttons: [{
+                  text: "Ok",
+                  role: 'cancel'
+                }]
+              });
+              alert.present();
+              });
+            });
+          this.loading = this.loadingCtrl.create();
+          this.loading.present();
+
+
       //TODO CHECK WITH DATABASE VALID OR NOT
       this.createToast('Signed in with username: ' + this.signInForm.value.username).present();
 
       // (getRootNav) is deprecated and will be removed in the next major release. Use getRootNavById instead.
       // change when deprecated
-      this.appCtrl.getRootNav().setRoot(HomePage);
+      // this.appCtrl.getRootNav().setRoot(HomePage);
     }
+  }
+
+  goToSignup(): void { 
+    this.navCtrl.push(SignupPage); 
   }
 }

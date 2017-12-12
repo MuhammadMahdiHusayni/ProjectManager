@@ -13,6 +13,7 @@ import { MinuteMeetingPage } from '../pages/minute-meeting/minute-meeting';
 import { TreasuryPage } from '../pages/treasury/treasury';
 
 import { LoginPage } from '../pages/login/login';
+import { SignupPage } from '../pages/signup/signup';
 
 
 import { AddingprojectComponent } from '../components/addingproject/addingproject';
@@ -28,10 +29,12 @@ import { ProjectService } from './services/project.service';
 
 
 import { ElasticModule } from 'angular2-elastic';
+import { AuthProvider } from '../providers/auth/auth';
 @NgModule({
   declarations: [
     MyApp,
     LoginPage,
+    SignupPage,
     HomePage,
     ListPage,
     MinuteMeetingPage,
@@ -54,6 +57,7 @@ import { ElasticModule } from 'angular2-elastic';
   entryComponents: [
     MyApp,
     LoginPage,
+    SignupPage,
     HomePage,
     ListPage,
     MinuteMeetingPage,
@@ -71,7 +75,8 @@ import { ElasticModule } from 'angular2-elastic';
     SplashScreen,
     ProjectService,
     HTTP,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthProvider
   ]
 })
 export class AppModule {}

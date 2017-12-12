@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import firebase from 'firebase';
 
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
@@ -16,7 +17,8 @@ import { LoginPage } from '../pages/login/login';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LoginPage;
+  // rootPage: any = LoginPage;
+  rootPage: any;
 
   pages: Array<{title: string, icon: string, component: any}>;
 
@@ -30,6 +32,25 @@ export class MyApp {
       { title: 'Treasury', icon: 'ios-cash-outline', component: TreasuryPage },
       { title: 'Archive', icon: 'archive', component: ListPage }
     ];
+
+    firebase.initializeApp({
+      apiKey: "AIzaSyCZr3i3NMM3XTvSnyma06ag4Fg1fuxNVfY",
+      authDomain: "reporting-912e1.firebaseapp.com",
+      databaseURL: "https://reporting-912e1.firebaseio.com",
+      projectId: "reporting-912e1",
+      storageBucket: "reporting-912e1.appspot.com",
+      messagingSenderId: "119234890140"
+    });
+
+    const unsubscribe = firebase.auth().onAuthStateChanged( user => {
+    if (!user) {
+      this.rootPage = LoginPage;
+      // unsubscribe(); //this use case when want to stop observe auth status (if there is change in auth in app)
+    } else { 
+      this.rootPage = HomePage;
+      // unsubscribe();
+    }
+  });
 
   }
 
@@ -47,4 +68,15 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
+
+  logout(){
+    this.logoutUser();
+    this.openPage({ component: LoginPage });
+  }
+
+  logoutUser():Promise<void> {
+    console.log('signout');
+    return firebase.auth().signOut();
+  }
+
 }
