@@ -9,16 +9,16 @@ const httpOptions = {
 @Injectable()
 export class ProjectService {
     // URL to web api
-    private projectUrl = 'https://jsonplaceholder.typicode.com/posts';  
+    private projectUrl = 'http://reportbackend.azurewebsites.net';  
 
     constructor(private httpClient: HttpClient, private http: HTTP){
     }
 
     // TODO DECIDE GONNA USE IONIC NATIVE HTTP OR NOT
 
-    getProject(){
+    getProject(user:any){
       return new Promise(resolve => {
-        this.httpClient.get(this.projectUrl)
+        this.httpClient.get(`${this.projectUrl}/api/Project/${user.email}`)
         .subscribe(res => resolve(res));
       });
     }
@@ -26,6 +26,13 @@ export class ProjectService {
     addProject(project:any){
       return new Promise(resolve => {
         this.httpClient.post(this.projectUrl, project, httpOptions)
+        .subscribe(res => resolve(res));
+      });
+    }
+
+    getReport(id:any){
+      return new Promise(resolve => {
+        this.httpClient.get(`${this.projectUrl}/api/Report/${id}`)
         .subscribe(res => resolve(res));
       });
     }

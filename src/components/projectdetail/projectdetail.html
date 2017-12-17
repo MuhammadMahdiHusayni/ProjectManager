@@ -13,7 +13,7 @@
         </ion-card-header>
         <ion-card-content *ngIf="toggleOverall">
             <ion-list>
-                <p> {{ item.body }} </p>
+                <p> {{ item.overallPlan }} </p>
             </ion-list>
         </ion-card-content>
     </ion-card>
@@ -23,7 +23,7 @@
         </ion-card-header>
         <ion-card-content *ngIf="toggleThisWeek">
             <ion-list>
-                <p> {{ item.body }} </p>
+                <p> {{ report && report[report.length-1].nextPlan }} </p>
             </ion-list>
         </ion-card-content>
     </ion-card>

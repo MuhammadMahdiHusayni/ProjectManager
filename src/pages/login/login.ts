@@ -51,7 +51,9 @@ export class LoginPage {
           this.authProvider.loginUser(this.signInForm.value.username, this.signInForm.value.password)
             .then( authData => {
               this.loading.dismiss().then( () => {
+                console.log(authData);
                 this.navCtrl.setRoot(HomePage);
+                this.createToast('Signed in with username: ' + this.signInForm.value.username).present();
               });
             }, error => {
               this.loading.dismiss().then( () => {
@@ -70,7 +72,7 @@ export class LoginPage {
 
 
       //TODO CHECK WITH DATABASE VALID OR NOT
-      this.createToast('Signed in with username: ' + this.signInForm.value.username).present();
+      
 
       // (getRootNav) is deprecated and will be removed in the next major release. Use getRootNavById instead.
       // change when deprecated

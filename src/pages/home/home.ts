@@ -4,6 +4,7 @@ import { AddingprojectComponent } from '../../components/addingproject/addingpro
 import { ProjectdetailComponent } from '../../components/projectdetail/projectdetail';
 import { ProjectService } from '../../app/services/project.service';
 import { HttpClient } from '@angular/common/http';
+import firebase from 'firebase';
 
 // should I use ionic native http?
 // test
@@ -19,7 +20,8 @@ export class HomePage {
     private projectService: ProjectService) { }
 
   ionViewDidLoad(){
-    this.projectService.getProject().then(data => this.projects = data);
+    var user = firebase.auth().currentUser;
+    this.projectService.getProject(user).then(data => this.projects = data);
   }
   
   addProject(){
@@ -27,6 +29,7 @@ export class HomePage {
   }
 
   openProjectDetail(item){
+    console.log('item', item);
     this.navCtrl.push(ProjectdetailComponent, {item});
   }
 }
