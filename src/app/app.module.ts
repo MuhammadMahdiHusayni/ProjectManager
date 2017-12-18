@@ -5,6 +5,7 @@ import { HTTP } from '@ionic-native/http';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpClientModule }    from '@angular/common/http';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -50,6 +51,7 @@ import { AuthProvider } from '../providers/auth/auth';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     ElasticModule,
     HttpClientModule
   ],

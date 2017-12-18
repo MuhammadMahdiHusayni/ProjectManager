@@ -13,18 +13,27 @@ export class AddWeeklyReportComponent {
   plan:string;
   toggle:boolean = false;
   item:any;
+  latestPlan:any;
+  latestReportNumber:any;
+  editFlag:boolean = true;
 
 
   constructor(private projectService: ProjectService, 
                 private toastCtrl: ToastController,
                 private navParams: NavParams) {
-    if(navParams.get('item')){
-      this.report = navParams.get('item').body;
-      this.plan = navParams.get('item').body;
+    console.log("navParams.get('edit')", navParams.get('edit'));
+    console.log("navParams.get('latestPlan')", navParams.get('latestPlan'));
+    console.log("navParams.get('latestReport')", navParams.get('latestReport'));
+    console.log("navParams.get('latestReportNumber')", navParams.get('latestReportNumber'));
+    this.editFlag = navParams.get('edit');
+    if(this.editFlag){
+      this.plan = navParams.get('latestPlan');
+      this.report = navParams.get('latestReport').description;
     }
+    this.latestPlan = navParams.get('latestPlan');
+    this.latestReportNumber = navParams.get('latestReportNumber');
   }
 
-  // TODO VALIDATION
   sendForm(){
     this.projectService.saveNextPlan({title: this.report, description:this.plan})
     .then(

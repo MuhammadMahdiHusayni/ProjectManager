@@ -9,7 +9,6 @@
 <ion-content padding>
     <ion-card>
         <ion-card-content>
-            <!-- TODO USE ANGULAR FORMS -->
             <form (ngSubmit)="sendForm()">
                 <ion-item>
                     <ion-label stacked>Enter title</ion-label>
@@ -18,6 +17,10 @@
                 <ion-item>
                     <ion-label stacked>Enter Description</ion-label>
                     <ion-textarea fz-elastic type="text" [(ngModel)]="description" name="description"></ion-textarea>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>Enter Overall Plan</ion-label>
+                    <ion-textarea fz-elastic type="text" [(ngModel)]="overallPlan" name="overallPlan"></ion-textarea>
                 </ion-item>
                 <button ion-button type="submit" block color="two">Add</button>
             </form>

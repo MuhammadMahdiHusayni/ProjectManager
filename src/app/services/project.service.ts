@@ -25,7 +25,7 @@ export class ProjectService {
 
     addProject(project:any){
       return new Promise(resolve => {
-        this.httpClient.post(this.projectUrl, project, httpOptions)
+        this.httpClient.post(`${this.projectUrl}/api/Project`, project, httpOptions)
         .subscribe(res => resolve(res));
       });
     }

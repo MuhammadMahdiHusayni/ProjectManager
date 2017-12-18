@@ -7,34 +7,32 @@
     </ion-navbar>
 </ion-header>
 <ion-content padding>
-    <ion-card text-wrap (click)="toggle=!toggle" [ngClass]="{active: toggleThisWeek}" color="four">
+    <ion-card text-wrap (click)="toggle=!toggle" [ngClass]="{active: toggleThisWeek}" *ngIf="!editFlag" color="four">
         <ion-card-header text-center>
-            Last Two Weeks Plan
+            Last Plan
         </ion-card-header>
         <ion-card-content *ngIf="toggle">
             <ion-list>
-                <!-- should be last two weeks plan -->
-                <p> {{ report }} </p>
+                
+                <p> {{ latestPlan }} </p>
             </ion-list>
         </ion-card-content>
     </ion-card>
     <ion-card>
         <ion-card-header text-center>
-            <strong>REPORT NO 3<br> 09/07/2017 - 22/07/2017</strong>
+            <strong>REPORT NO {{ latestReportNumber }}</strong>
         </ion-card-header>
         <ion-card-content>
-            <form (ngSubmit)="sendForm()">
-                <!-- https://forum.ionicframework.com/t/elastic-ion-textarea/55671 -->
-                <!-- https://www.npmjs.com/package/angular2-elastic -->                
+            <form (ngSubmit)="sendForm()">              
                 <ion-item>
                     <ion-label stacked>Enter Report</ion-label>
                     <ion-textarea fz-elastic type="text" [(ngModel)]="report" name="report"></ion-textarea>
                 </ion-item>
                 <ion-item>
-                    <ion-label stacked>Enter Next Two Weeks Plan</ion-label>
+                    <ion-label stacked>Enter Next Plan</ion-label>
                     <ion-textarea fz-elastic type="text" [(ngModel)]="plan" name="plan"></ion-textarea>
                 </ion-item>
-                <button ion-button type="submit" block color="two">Submit Two Weeks Report</button>
+                <button ion-button type="submit" block color="two">Submit Report</button>
             </form>
         </ion-card-content>
     </ion-card>

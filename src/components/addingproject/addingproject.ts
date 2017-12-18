@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ToastController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 import { ProjectService } from '../../app/services/project.service';
 
@@ -10,12 +11,29 @@ import { ProjectService } from '../../app/services/project.service';
 export class AddingprojectComponent {
 	title: any;
 	description: any;
+	overallPlan: any;
+	userId:any;
+	postArray = [];
 	
-	constructor(private projectService: ProjectService, private toastCtrl: ToastController) {}
+	constructor(private projectService: ProjectService, 
+		private toastCtrl: ToastController,
+		private storage: Storage) {}
+
+	ionViewDidLoad(){
+		this.storage.get('userId').then((val) => this.userId = val);
+	}
+	
 
 	// TODO VALIDATION
 	sendForm(){
-		this.projectService.addProject({title: this.title, description:this.description})
+		this.postArray = [];
+		this.postArray.push({
+			title: this.title, 
+			description:this.description, 
+			overallPlan:this.overallPlan,
+			userId:this.userId
+		})
+		this.projectService.addProject(this.postArray)
 		.then(
 			res => {this.presentToast('Project was added successfully')},
 			err => {this.presentToast('Cannot add project')}
