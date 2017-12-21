@@ -16,7 +16,7 @@ export class AddWeeklyReportComponent {
   latestPlan:any;
   latestReportNumber:any;
   editFlag:boolean = true;
-
+  latestReport:any;
 
   constructor(private projectService: ProjectService, 
                 private toastCtrl: ToastController,
@@ -25,6 +25,7 @@ export class AddWeeklyReportComponent {
     console.log("navParams.get('latestPlan')", navParams.get('latestPlan'));
     console.log("navParams.get('latestReport')", navParams.get('latestReport'));
     console.log("navParams.get('latestReportNumber')", navParams.get('latestReportNumber'));
+    this.latestReport = navParams.get('latestReport');
     this.editFlag = navParams.get('edit');
     if(this.editFlag){
       this.plan = navParams.get('latestPlan');
@@ -35,7 +36,8 @@ export class AddWeeklyReportComponent {
   }
 
   sendForm(){
-    this.projectService.saveNextPlan({title: this.report, description:this.plan})
+    let postArray = [{description: this.report, nextPlan:this.plan, projectId:this.latestReport.projectId}]
+    this.projectService.saveNextPlan(postArray)
     .then(
       res => {this.presentToast('Project was added successfully')},
       err => {this.presentToast('Cannot add project')}

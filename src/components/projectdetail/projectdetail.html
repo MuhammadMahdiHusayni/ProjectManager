@@ -19,7 +19,7 @@
     </ion-card>
     <ion-card text-wrap (click)="toggleThisWeek=!toggleThisWeek" [ngClass]="{active: toggleThisWeek}" color="four">
         <ion-card-header text-center>
-            Two Weeks Plan
+            Latest Plan
         </ion-card-header>
         <ion-card-content *ngIf="toggleThisWeek">
             <ion-list>
@@ -27,6 +27,20 @@
             </ion-list>
         </ion-card-content>
     </ion-card>
+
+    <ion-card *ngFor="let r of report; let i=index" text-wrap (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}">
+        <ion-card-header text-center>
+            Report No {{r.reportCount}}
+        </ion-card-header>
+        <ion-card-content *ngIf="isGroupShown(i)">
+            <h4><strong> Report </strong></h4>
+            {{r.description}}
+            <hr>
+            <h4><strong> Plan </strong></h4>
+            {{r.nextPlan}}
+        </ion-card-content>
+    </ion-card>
+
     
     <ion-fab bottom right>
         <button ion-fab color="two">
@@ -35,11 +49,11 @@
         <ion-fab-list side="top">
             <button ion-fab color="three" (click)="addWeeklyReport()">
                 <ion-icon name="ios-create-outline"></ion-icon>
-                <ion-label>Add Two Weeks Report</ion-label>
+                <ion-label>Add Report</ion-label>
             </button>
             <button ion-fab color="four" (click)="editWeeklyReport()">
                 <ion-icon name="ios-create-outline"></ion-icon>
-                <ion-label>Edit This Week Report</ion-label>
+                <ion-label>Edit Latest Report</ion-label>
             </button>
             <button ion-fab color="five" (click)="editOverall()">
                 <ion-icon name="ios-create-outline"></ion-icon>

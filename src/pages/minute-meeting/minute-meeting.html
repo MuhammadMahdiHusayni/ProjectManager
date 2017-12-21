@@ -9,12 +9,12 @@
 
 
 <ion-content padding>
- <ion-card *ngFor="let item of data" (tap)="openProjectDetail(item.id, item.title)" color="{{item.color}}">
+ <ion-card *ngFor="let item of meeting" (tap)="openProjectDetail(item)" color="{{item.color}}">
         <ion-card-header>
             {{item.title}}
         </ion-card-header>
         <ion-card-content>
-            {{item.location}}, {{item.date}}
+            {{item.meetingLocation}}, {{item.meetingDate}}
         </ion-card-content>
     </ion-card>
     <ion-fab bottom right>

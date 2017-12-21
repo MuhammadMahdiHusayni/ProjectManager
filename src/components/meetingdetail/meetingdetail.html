@@ -3,7 +3,7 @@
         <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>{{title}}</ion-title>
+        <ion-title>{{meeting && meeting.title}}</ion-title>
     </ion-navbar>
 </ion-header>
 <ion-content padding>
@@ -12,17 +12,45 @@
             Detail
         </ion-card-header>
         <ion-card-content *ngIf="toggleDetail">
-            <h3 ion-text class="bold">Location</h3> Sg Pinang
-            <h3 ion-text class="bold">Date</h3> 11/7/2017
-            <h3 ion-text class="bold">Time</h3> 12.30 PM
+            <h3 ion-text class="bold">Location</h3> {{meeting.meetingLocation}}
+            <h3 ion-text class="bold">Date</h3> {{meeting.meetingDate}}
+            <h3 ion-text class="bold">Time</h3> {{meeting.meetingTime}}
         </ion-card-content>
     </ion-card>
-    <ion-card *ngFor="let d of diseases; let i=index" text-wrap (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}" color="{{d.color}}">
+
+    <ion-card text-wrap (click)="toggleAttendance=!toggleAttendance" [ngClass]="{active: toggleAttendance}" color="four">
         <ion-card-header text-center>
-            {{d.title}}
+            Attendance
         </ion-card-header>
-        <ion-card-content *ngIf="isGroupShown(i)">
-            <h3 ion-text *ngFor="let e of d.items;"> <ion-icon name="git-commit"></ion-icon> {{e.name}}</h3>
+        <ion-card-content *ngIf="toggleAttendance">
+            <h3 ion-text *ngFor="let e of meeting.attendanceList"> <ion-icon name="ios-checkmark-circle-outline"></ion-icon> {{e.name}}</h3>
         </ion-card-content>
     </ion-card>
+
+    <ion-card text-wrap (click)="toggleAgenda=!toggleAgenda" [ngClass]="{active: toggleAgenda}" color="five">
+        <ion-card-header text-center>
+            Agenda
+        </ion-card-header>
+        <ion-card-content *ngIf="toggleAgenda">
+            <h3 ion-text *ngFor="let e of meeting.agendaList"> <ion-icon name="ios-alert-outline"></ion-icon> {{e.agenda}}</h3>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card text-wrap (click)="toggleAction=!toggleAction" [ngClass]="{active: toggleAction}" color="one">
+        <ion-card-header text-center>
+            Action
+        </ion-card-header>
+        <ion-card-content *ngIf="toggleAction">
+            <h3 ion-text *ngFor="let e of meeting.actionList"> <ion-icon name="ios-star-outline"></ion-icon> {{e.action}}</h3>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card text-wrap (click)="toggleNote=!toggleNote" [ngClass]="{active: toggleNote}" color="three">
+            <ion-card-header text-center>
+                Note
+            </ion-card-header>
+            <ion-card-content *ngIf="toggleNote">
+                 {{meeting.note}}
+            </ion-card-content>
+        </ion-card>
 </ion-content>

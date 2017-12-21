@@ -15,6 +15,7 @@ export class ProjectdetailComponent {
 	toggleOverall:boolean = false;
 	latestReportNumber:any;
 	latestReport:any;
+	shownGroup:boolean;
 
 	constructor(public navCtrl: NavController, 
 		private navParams: NavParams,
@@ -28,9 +29,15 @@ export class ProjectdetailComponent {
 			if(this.report.length > 0){
 				let count = 0;
 				let temp;
+				let viewArray = [];
+				
+
 				for(let i = 0; i < this.report.length; i++){
 					temp = count > this.report[i].reportCount ? temp : this.report[i];
+					viewArray[this.report[i].reportCount-1] = this.report[i];
 				}
+
+				this.report = viewArray.reverse();
 				this.latestReport = temp;
 				this.latestPlan = temp.nextPlan;
 				this.latestReportNumber = temp.reportCount;
@@ -40,6 +47,17 @@ export class ProjectdetailComponent {
 			
 		});
 	}
+
+	toggleGroup(group) {
+		if (this.isGroupShown(group)) {
+			this.shownGroup = null;
+		} else {
+			this.shownGroup = group;
+		}
+	};
+	isGroupShown(group) {
+		return this.shownGroup === group;
+	};
 
 	addWeeklyReport(){
 		this.navCtrl.push(AddWeeklyReportComponent, 

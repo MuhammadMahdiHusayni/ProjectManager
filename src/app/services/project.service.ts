@@ -41,7 +41,7 @@ export class ProjectService {
     //call to save new project
     saveNextPlan(plan:any){
       return new Promise(resolve => {
-        this.httpClient.post(this.projectUrl, plan, httpOptions)
+        this.httpClient.post(`${this.projectUrl}/api/Report`, plan, httpOptions)
         .subscribe(res => resolve(res));
       });
     }

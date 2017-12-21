@@ -35,8 +35,14 @@ export class AddingprojectComponent {
 		})
 		this.projectService.addProject(this.postArray)
 		.then(
-			res => {this.presentToast('Project was added successfully')},
-			err => {this.presentToast('Cannot add project')}
+			res => {
+				console.log('this is here');
+				this.presentToast('Project was added successfully')
+			},
+			err => {
+				console.log('error');
+				this.presentToast('Cannot add project')
+			}
 		)
 	}
 
